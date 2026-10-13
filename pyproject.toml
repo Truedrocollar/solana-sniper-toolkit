@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "solana-sniper-toolkit"
+version = "0.9.7"
+description = "Modular Solana sniper toolkit — pool listeners, rug heuristics, Jito bundle submission, and per-DEX adapters."
+readme = "CONTRIBUTING.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "sniper-toolkit maintainers" }]
+keywords = ["solana", "sniper", "raydium", "pumpfun", "jito", "mev", "defi"]
+
+dependencies = [
+    "solana>=0.34.0",
+    "solders>=0.21.0",
+    "anchorpy>=0.20.1",
+    "websockets>=12.0",
+    "aiohttp>=3.9.5",
+    "httpx[http2]>=0.27.0",
+    "base58>=2.1.1",
+    "borsh-construct>=0.1.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "structlog>=24.1.0",
+    "tenacity>=8.3.0",
+    "orjson>=3.10.0",
+    "rich>=13.7.1",
+    "python-dotenv>=1.0.1",
+    "click>=8.1.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2.0", "pytest-asyncio>=0.23.7", "ruff>=0.5.0", "mypy>=1.10.0"]
+
+[project.scripts]
+sniper = "solana_sniper.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
